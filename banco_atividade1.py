@@ -1,4 +1,5 @@
-menu = '''Bem Vindo ao Banco Python!!!
+menu = '''
+Bem Vindo ao Banco Python!!!
 
 Por favor digite uma das opções abaixo:
 
@@ -32,20 +33,17 @@ while True:
     elif opcao == 2:
         print("\n####Saque####\n")
         valor_saque = float(input("Por favor, insira o valor a ser sacado:")) 
-        if numero_saques < LIMITE_SAQUES:
-            if valor_saque <= 500:
-                if valor_saque <= saldo:
-                    saldo -= valor_saque
-                    numero_saques += 1
-                    extrato += f"Saque: R${valor_saque:.2f}\n"
-                    print("Saque concluído, retire o valor solicitado!")
-                else:
-                    print("Você não possui saldo suficiente para concluir esta operação!")
-            else:
-                print("O valor selecionado excede o limite por transação!")
+        if numero_saques > LIMITE_SAQUES:
+            print("\nNúmero de saques diários excedido!")
+        elif valor_saque > limite:
+            print("\nO valor selecionado excede o limite por transação!")
+        elif valor_saque > saldo:
+            print("\nVocê não possui saldo suficiente para concluir esta operação!")
         else:
-            print("Número de saques diários excedido!")
-        
+            saldo -= valor_saque
+            numero_saques += 1
+            extrato += f"Saque: R${valor_saque:.2f}\n"
+            print("Saque concluído, retire o valor solicitado!")
 
 
     elif opcao == 3:
